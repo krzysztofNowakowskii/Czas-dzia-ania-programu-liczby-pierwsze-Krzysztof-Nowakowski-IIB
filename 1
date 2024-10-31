@@ -1,0 +1,303 @@
+#1
+ALgorytm naiwny nr 1:
+#include <ctime>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Funkcja sprawdzająca, czy liczba jest pierwsza
+void znajdzDzielniki(int n) {
+  for (int k = 1; k <= n; k++) {
+    cout << "Dzielniki liczby " << k << ": ";
+    for (int i = 2; i <= k; i++) {
+      if (k % i == 0) {
+        cout << i << " ";
+      }
+    }
+    cout << endl; // Nowa linia po każdym k
+  }
+}
+
+// Funkcja do znajdowania liczb pierwszych w zakresie od 2 do n
+vector<int> find_primes(int n) {
+  vector<int> primes;
+  for (int i = 2; i <= n; i++) {
+    if (is_prime(i)) {
+      primes.push_back(i);
+    }
+  }
+  return primes;
+}
+
+int main() {
+  int n;
+  cout << "Podaj górny zakres (n): ";
+  cin >> n;
+
+  // Mierzenie czasu wykonania
+  clock_t start_time = clock();
+
+  vector<int> primes = find_primes(n);
+
+  clock_t end_time = clock();
+  double execution_time =
+      static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC;
+
+  // Wyświetlenie wyników
+  cout << "Liczba liczb pierwszych do " << n << ": " << primes.size() << endl;
+
+  vector<int> wektor = primes;
+
+  cout << "Czas wykonania: " << execution_time << " sekund" << endl;
+
+  return 0;
+}
+#2
+Algorytm naiwny 2.
+#include <ctime>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Funkcja sprawdzająca, czy liczba jest pierwsza, korzystając z algorytmu naiwnego
+bool is_prime_naive(int k) {
+    if (k < 2) return false; // Wykluczamy liczby mniejsze od 2
+    if (k == 2) return true;  // 2 jest liczbą pierwszą
+    if (k % 2 == 0) return false; // Wykluczamy liczby parzyste większe niż 2
+
+    for (int i = 3; i < k; i += 2) { // Sprawdzamy dzielniki tylko dla nieparzystych
+        if (k % i == 0) return false;
+    }
+    return true;
+}
+
+// Funkcja do znajdowania liczb pierwszych w zakresie od 2 do n
+vector<int> find_primes(int n) {
+    vector<int> primes;
+    for (int i = 2; i <= n; i++) {
+        if (is_prime_naive(i)) {
+            primes.push_back(i);
+        }
+    }
+    return primes;
+}
+
+int main() {
+    int n;
+    cout << "Podaj górny zakres (n): ";
+    cin >> n;
+
+    // Mierzenie czasu wykonania
+    clock_t start_time = clock();
+
+    vector<int> primes = find_primes(n);
+
+    clock_t end_time = clock();
+    double execution_time = static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC;
+
+    // Wyświetlenie wyników
+    cout << "Liczba liczb pierwszych do " << n << ": " << primes.size() << endl;
+
+    cout << "Czas wykonania: " << execution_time << " sekund" << endl;
+
+    return 0;
+}
+
+#3
+algorytm naiwny 3
+#include <cmath>
+#include <ctime>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Funkcja sprawdzająca, czy liczba jest pierwsza, korzystając z algorytmu
+// naiwnego
+bool is_prime_naive(int k) {
+  if (k < 2)
+    return false; // Wykluczamy liczby mniejsze od 2
+  if (k == 2)
+    return true; // 2 jest liczbą pierwszą
+  if (k % 2 == 0)
+    return false; // Wykluczamy liczby parzyste większe niż 2
+
+  int sqrt_k = static_cast<int>(sqrt(k)); // Obliczamy pierwiastek z k
+  for (int i = 3; i <= sqrt_k;
+       i += 2) { // Sprawdzamy dzielniki tylko dla nieparzystych
+    if (k % i == 0)
+      return false;
+  }
+  return true;
+}
+
+// Funkcja do znajdowania liczb pierwszych w zakresie od 2 do n
+vector<int> find_primes(int n) {
+  vector<int> primes;
+  for (int i = 2; i <= n; i++) {
+    if (is_prime_naive(i)) {
+      primes.push_back(i);
+    }
+  }
+  return primes;
+}
+
+int main() {
+  int n;
+  cout << "Podaj górny zakres (n): ";
+  cin >> n;
+
+  // Mierzenie czasu wykonania
+  clock_t start_time = clock();
+
+  vector<int> primes = find_primes(n);
+
+  clock_t end_time = clock();
+  double execution_time =
+      static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC;
+
+  // Wyświetlenie wyników
+  cout << "Liczba liczb pierwszych do " << n << ": " << primes.size() << endl;
+
+  cout << "Czas wykonania: " << execution_time << " sekund" << endl;
+
+  return 0;
+}
+#4
+sito eratostenesa
+#include <ctime>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Funkcja sprawdzająca, czy liczba jest pierwsza
+bool is_prime(int number) {
+  if (number <= 1)
+    return false;
+  for (int i = 2; i * i <= number; i++) {
+    if (number % i == 0)
+      return false;
+  }
+  return true;
+}
+
+// Funkcja do znajdowania liczb pierwszych w zakresie od 2 do n
+vector<int> find_primes(int n) {
+  vector<int> primes;
+  for (int i = 2; i <= n; i++) {
+    if (is_prime(i)) {
+      primes.push_back(i);
+    }
+  }
+  return primes;
+}
+
+int main() {
+  int n;
+  cout << "Podaj\ górny zakres (n): ";
+  cin >> n;
+
+  // Mierzenie czasu wykonania
+  clock_t start_time = clock();
+
+  vector<int> primes = find_primes(n);
+
+  clock_t end_time = clock();
+  double execution_time =
+      static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC;
+
+  // Wyświetlenie wyników
+  cout << "Liczba liczb pierwszych do " << n << ": " << primes.size() << endl;
+
+  vector<int> wektor = primes;
+
+  cout << "Czas wykonania: " << execution_time << " sekund" << endl;
+
+  return 0;
+}
+#5 
+sito atkina
+#include <cmath>
+#include <ctime>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Funkcja do znajdowania liczb pierwszych w zakresie od 2 do n za pomocą Sita
+// Atkina
+vector<int> find_primes(int n) {
+  vector<bool> sieve(n + 1, false);
+
+  // Ustawienie 2 i 3 jako liczby pierwsze, jeśli limit jest większy lub równy
+  if (n > 2)
+    sieve[2] = true;
+  if (n > 3)
+    sieve[3] = true;
+
+  int sqrtLimit = sqrt(n);
+
+  // Główna część algorytmu Sita Atkina
+  for (int x = 1; x <= sqrtLimit; x++) {
+    for (int y = 1; y <= sqrtLimit; y++) {
+      int num = (4 * x * x) + (y * y);
+      if (num <= n && (num % 12 == 1 || num % 12 == 5)) {
+        sieve[num] = !sieve[num];
+      }
+
+      num = (3 * x * x) + (y * y);
+      if (num <= n && num % 12 == 7) {
+        sieve[num] = !sieve[num];
+      }
+
+      num = (3 * x * x) - (y * y);
+      if (x > y && num <= n && num % 12 == 11) {
+        sieve[num] = !sieve[num];
+      }
+    }
+  }
+
+  // Usuwanie wielokrotności kwadratów liczb pierwszych
+  for (int r = 5; r <= sqrtLimit; r++) {
+    if (sieve[r]) {
+      for (int i = r * r; i <= n; i += r * r) {
+        sieve[i] = false;
+      }
+    }
+  }
+
+  // Zbieranie wyników do wektora liczb pierwszych
+  vector<int> primes;
+  for (int i = 2; i <= n; i++) {
+    if (sieve[i])
+      primes.push_back(i);
+  }
+  return primes;
+}
+
+int main() {
+  int n;
+  cout << "Podaj górny zakres (n): ";
+  cin >> n;
+
+  // Mierzenie czasu wykonania
+  clock_t start_time = clock();
+
+  vector<int> primes = find_primes(n);
+
+  clock_t end_time = clock();
+  double execution_time =
+      static_cast<double>(end_time - start_time) / CLOCKS_PER_SEC;
+
+  // Wyświetlenie wyników
+  cout << "Liczba liczb pierwszych do " << n << ": " << primes.size() << endl;
+
+  vector<int> wektor = primes;
+ 
+  cout << "Czas wykonania: " << execution_time << " sekund" << endl;
+
+  return 0;
+}
